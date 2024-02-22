@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using Grpc.Core.Internal;
+using YYHEggEgg.ProtoParser.Aot;
 using YYHEggEgg.ProtoParser.RawData;
 
 namespace YYHEggEgg.ProtoParser;
@@ -62,7 +63,11 @@ public static class ExecutableInvoke
             var separatorIndex = line.IndexOf("=>");
             if (separatorIndex < 0) continue;
 
+#if NET8_0_OR_GREATER
+            result.Add(line[..separatorIndex], JsonSerializer.Deserialize<Proto>(line[(separatorIndex + "=>".Length)..], ProtoContext.Default.Proto));
+#else
             result.Add(line[..separatorIndex], JsonSerializer.Deserialize<Proto>(line[(separatorIndex + "=>".Length)..]));
+#endif
         }
         await proc.WaitForExitAsync();
         if (proc.ExitCode != 0)
@@ -92,7 +97,11 @@ public static class ExecutableInvoke
             throw new ApplicationException($"The go-proto2json process exited with code {proc.ExitCode}.");
         }
         var resText = await proc.StandardOutput.ReadToEndAsync();
+#if NET8_0_OR_GREATER
+        return JsonSerializer.Deserialize<Proto>(resText, ProtoContext.Default.Proto);
+#else
         return JsonSerializer.Deserialize<Proto>(resText);
+#endif
     }
 
     /// <summary>
