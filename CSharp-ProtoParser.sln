@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp-ProtoParser", "CSharp-ProtoParser\CSharp-ProtoParser.csproj", "{BFD911A1-83AC-406E-89DD-0047715EAF4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoParser-ConsoleTest", "ProtoParser-ConsoleTest\ProtoParser-ConsoleTest.csproj", "{AE5946E5-087B-48C6-8A4B-8DA15D9404EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BFD911A1-83AC-406E-89DD-0047715EAF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD911A1-83AC-406E-89DD-0047715EAF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD911A1-83AC-406E-89DD-0047715EAF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE5946E5-087B-48C6-8A4B-8DA15D9404EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5946E5-087B-48C6-8A4B-8DA15D9404EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5946E5-087B-48C6-8A4B-8DA15D9404EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5946E5-087B-48C6-8A4B-8DA15D9404EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

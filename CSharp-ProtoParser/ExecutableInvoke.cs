@@ -20,6 +20,7 @@ public static class ExecutableInvoke
         if (processArchitecture == CommonPlatformDetection.CpuArchitecture.Unknown)
             throw new PlatformNotSupportedException("Your CPU Architecture is not supported by this program.");
         path += processArchitecture.ToString().ToLower();
+        path += "/go-proto2json";
         if (oskind == CommonPlatformDetection.OSKind.Windows)
             path += ".exe";
         return path;

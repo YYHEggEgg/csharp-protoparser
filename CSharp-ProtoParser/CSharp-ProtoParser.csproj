@@ -9,8 +9,8 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>EggEgg.CSharp-ProtoParser</Title>
-    <Version>1.0.0-dev01</Version>
+    <Title>EggEgg.$(AssemblyName)</Title>
+    <Version>1.0.0-dev03</Version>
     <Authors>YYHEggEgg</Authors>
     <Company>YYHEggEgg</Company>
     <Description>A .proto file parser compatiable with go-protoparser.</Description>
@@ -18,6 +18,39 @@
     <PackageProjectUrl>https://github.com/YYHEggEgg/csharp-protoparser</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YYHEggEgg/csharp-protoparser</RepositoryUrl>
     <PackageTags>Protobuf;Parser</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>EggEgg.$(AssemblyName)</PackageId>
+    <Product>EggEgg.$(AssemblyName)</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReleaseNotes>csharp-protoparser is a .proto file parser compatiable with go-protoparser.</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup Label="Asset root folders.">
+    <Asset_Proto2jsonBuild>go-proto2json/build</Asset_Proto2jsonBuild>
+  </PropertyGroup>
+
+  <ItemGroup Label="NuGet package assets">
+    <_Asset PackagePath="build/windows_x86" Include="$(Asset_Proto2jsonBuild)/windows_x86/go-proto2json.exe" />
+    <_Asset PackagePath="build/windows_x64" Include="$(Asset_Proto2jsonBuild)/windows_x64/go-proto2json.exe" />
+    <_Asset PackagePath="build/windows_arm64" Include="$(Asset_Proto2jsonBuild)/windows_arm64/go-proto2json.exe" />
+    <_Asset PackagePath="build/macosx_x86" Include="$(Asset_Proto2jsonBuild)/macosx_x86/go-proto2json" />
+    <_Asset PackagePath="build/macosx_x64" Include="$(Asset_Proto2jsonBuild)/macosx_x64/go-proto2json" />
+    <_Asset PackagePath="build/macosx_arm64" Include="$(Asset_Proto2jsonBuild)/macosx_arm64/go-proto2json" />
+    <_Asset PackagePath="build/linux_x86" Include="$(Asset_Proto2jsonBuild)/linux_x86/go-proto2json" />
+    <_Asset PackagePath="build/linux_x64" Include="$(Asset_Proto2jsonBuild)/linux_x64/go-proto2json" />
+    <_Asset PackagePath="build/linux_arm64" Include="$(Asset_Proto2jsonBuild)/linux_arm64/go-proto2json" />
+
+    <None Include="@(_Asset)" Pack="true" Visible="false" />
+  </ItemGroup>
 
 </Project>
