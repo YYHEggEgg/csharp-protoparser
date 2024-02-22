@@ -28,9 +28,9 @@ public class EnumBody
 }
 
 /// <summary>
-/// Enum consists of a name and an enum body.
+/// EnumBase consists of a name and an enum body.
 /// </summary>
-public class Enum : WithInlineCommentWithLeftCurlyBase
+public class EnumBase : WithInlineCommentWithLeftCurlyBase
 {
     public required string EnumName { get; set; }
     /// <summary>

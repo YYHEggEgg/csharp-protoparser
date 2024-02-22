@@ -18,7 +18,7 @@ public class ProtoBody
     public required List<Option> Options { get; set; }
     public required List<Message> Messages { get; set; }
     public required List<Extend> Extends { get; set; }
-    public required List<Enum> Enums { get; set; }
+    public required List<EnumBase> Enums { get; set; }
     public required List<Service> Services { get; set; }
     public required List<EmptyStatement> EmptyStatements { get; set; }
 }

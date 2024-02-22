@@ -3,7 +3,7 @@ namespace YYHEggEgg.ProtoParser.RawData;
 public class MessageBody
 {
     public required List<Field> Fields { get; set; }
-    public required List<Enum> Enums { get; set; }
+    public required List<EnumBase> Enums { get; set; }
     public required List<Message> Messages { get; set; }
     public required List<Option> Options { get; set; }
     public required List<Oneof> Oneofs { get; set; }
