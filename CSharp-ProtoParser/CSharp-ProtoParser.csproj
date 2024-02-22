@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+    <PublishAot Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</PublishAot>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
+    <RootNamespace>YYHEggEgg.ProtoParser</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>EggEgg.CSharp-ProtoParser</Title>
+    <Version>1.0.0-dev01</Version>
+    <Authors>YYHEggEgg</Authors>
+    <Company>YYHEggEgg</Company>
+    <Description>A .proto file parser compatiable with go-protoparser.</Description>
+    <Copyright>Copyright (c) 2024 EggEgg</Copyright>
+    <PackageProjectUrl>https://github.com/YYHEggEgg/csharp-protoparser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/YYHEggEgg/csharp-protoparser</RepositoryUrl>
+    <PackageTags>Protobuf;Parser</PackageTags>
+  </PropertyGroup>
+
+</Project>
