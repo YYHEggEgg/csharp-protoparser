@@ -5,7 +5,7 @@ using YYHEggEgg.ProtoParser;
 // See https://aka.ms/new-console-template for more information
 Log.Initialize(new LoggerConfig
 {
-    Max_Output_Char_Count = -1
+    Max_Output_Char_Count = -1,
 });
 
 Log.Info("Embedded Resources List:");

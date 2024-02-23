@@ -13,17 +13,19 @@ public static class ProtoJsonRawDataAnalyzer
 
         var protoBodies = proto.ProtoBody;
 
-        foreach (var body in protoBodies.Messages)
-        {
-            var messageResult = Analyze_Message_DispatchWorker(body);
-            if (messageResult != null) result.MessageBodys.Add(messageResult);
-        }
+        if (protoBodies.Messages != null)
+            foreach (var body in protoBodies.Messages)
+            {
+                var messageResult = Analyze_Message_DispatchWorker(body);
+                if (messageResult != null) result.MessageBodys.Add(messageResult);
+            }
 
-        foreach (var eb in protoBodies.Enums)
-        {
-            var enumResult = Analyze_EnumWorker(eb);
-            if (enumResult != null) result.EnumBodys.Add(enumResult);
-        }
+        if (protoBodies.Enums != null)
+            foreach (var eb in protoBodies.Enums)
+            {
+                var enumResult = Analyze_EnumWorker(eb);
+                if (enumResult != null) result.EnumBodys.Add(enumResult);
+            }
 
         return result;
     }
@@ -36,14 +38,16 @@ public static class ProtoJsonRawDataAnalyzer
         {
             EnumName = eb.EnumName
         };
-        foreach (var ei in eb.EnumBody.EnumFields)
-        {
-            enumResult.EnumNodes.Add((ei.Ident, int.Parse(ei.Number)));
-        }
-        foreach (var ei in eb.EnumBody.Options)
-        {
-            enumResult.EnumOptions.Add((ei.OptionName, ei.Constant));
-        }
+        if (eb.EnumBody.EnumFields != null)
+            foreach (var ei in eb.EnumBody.EnumFields)
+            {
+                enumResult.EnumNodes.Add((ei.Ident, int.Parse(ei.Number)));
+            }
+        if (eb.EnumBody.Options != null)
+            foreach (var ei in eb.EnumBody.Options)
+            {
+                enumResult.EnumOptions.Add((ei.OptionName, ei.Constant));
+            }
         return enumResult;
     }
     #endregion
@@ -71,12 +75,13 @@ public static class ProtoJsonRawDataAnalyzer
             OneofInnerFields = new List<CommonResult>()
         };
 
-        foreach (var ob in mb.OneofFields)
-        {
-            var innerCommonResult = Analyze_InOneof_CommonFieldWorker(ob);
-            if (innerCommonResult != null)
-                oneofResult.OneofInnerFields.Add(innerCommonResult);
-        }
+        if (mb.OneofFields != null)
+            foreach (var ob in mb.OneofFields)
+            {
+                var innerCommonResult = Analyze_InOneof_CommonFieldWorker(ob);
+                if (innerCommonResult != null)
+                    oneofResult.OneofInnerFields.Add(innerCommonResult);
+            }
         return oneofResult;
     }
     #region Common Field in Oneof
@@ -123,16 +128,21 @@ public static class ProtoJsonRawDataAnalyzer
             EnumFields = new List<EnumResult>()
         };
 
-        foreach (var mb in body.MessageBody.Enums)
-            messageResult.EnumFields.Add(Analyze_EnumWorker(mb));
-        foreach (var mb in body.MessageBody.Fields)
-            messageResult.CommonFields.Add(Analyze_CommonFieldWorker(mb));
-        foreach (var mb in body.MessageBody.Oneofs)
-            messageResult.OneofFields.Add(Analyze_OneofWorker(mb));
-        foreach (var mb in body.MessageBody.Maps)
-            messageResult.MapFields.Add(Analyze_MapWorker(mb));
-        foreach (var mb in body.MessageBody.Messages)
-            messageResult.MessageFields.Add(Analyze_Message_DispatchWorker(mb));
+        if (body.MessageBody.Enums != null)
+            foreach (var mb in body.MessageBody.Enums)
+                messageResult.EnumFields.Add(Analyze_EnumWorker(mb));
+        if (body.MessageBody.Fields != null)
+            foreach (var mb in body.MessageBody.Fields)
+                messageResult.CommonFields.Add(Analyze_CommonFieldWorker(mb));
+        if (body.MessageBody.Oneofs != null)
+            foreach (var mb in body.MessageBody.Oneofs)
+                messageResult.OneofFields.Add(Analyze_OneofWorker(mb));
+        if (body.MessageBody.Maps != null)
+            foreach (var mb in body.MessageBody.Maps)
+                messageResult.MapFields.Add(Analyze_MapWorker(mb));
+        if (body.MessageBody.Messages != null)
+            foreach (var mb in body.MessageBody.Messages)
+                messageResult.MessageFields.Add(Analyze_Message_DispatchWorker(mb));
 
         return messageResult;
     }

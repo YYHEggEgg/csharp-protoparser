@@ -8,7 +8,7 @@ public class OneofField : WithCommentsBase
     public required string Type { get; set; }
     public required string FieldName { get; set; }
     public required string FieldNumber { get; set; }
-    public required List<FieldOption> FieldOptions { get; set; }
+    public List<FieldOption>? FieldOptions { get; set; }
 }
 
 /// <summary>
@@ -16,8 +16,8 @@ public class OneofField : WithCommentsBase
 /// </summary>
 public class Oneof : WithInlineCommentWithLeftCurlyBase
 {
-    public required List<OneofField> OneofFields { get; set; }
+    public List<OneofField>? OneofFields { get; set; }
     public required string OneofName { get; set; }
 
-    public required List<Option> Options { get; set; }
+    public List<Option>? Options { get; set; }
 }

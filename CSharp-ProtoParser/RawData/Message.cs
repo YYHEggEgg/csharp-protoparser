@@ -2,17 +2,17 @@ namespace YYHEggEgg.ProtoParser.RawData;
 
 public class MessageBody
 {
-    public required List<Field> Fields { get; set; }
-    public required List<EnumBase> Enums { get; set; }
-    public required List<Message> Messages { get; set; }
-    public required List<Option> Options { get; set; }
-    public required List<Oneof> Oneofs { get; set; }
-    public required List<MapField> Maps { get; set; }
-    public required List<GroupField> Groups { get; set; }
-    public required List<Reserved> Reserves { get; set; }
-    public required List<Extend> Extends { get; set; }
-    public required List<EmptyStatement> EmptyStatements { get; set; }
-    public required List<Extensions> Extensions { get; set; }
+    public List<Field>? Fields { get; set; } = new();
+    public List<EnumBase>? Enums { get; set; } = new();
+    public List<Message>? Messages { get; set; } = new();
+    public List<Option>? Options { get; set; } = new();
+    public List<Oneof>? Oneofs { get; set; } = new();
+    public List<MapField>? Maps { get; set; } = new();
+    public List<GroupField>? Groups { get; set; } = new();
+    public List<Reserved>? Reserves { get; set; } = new();
+    public List<Extend>? Extends { get; set; } = new();
+    public List<EmptyStatement>? EmptyStatements { get; set; } = new();
+    public List<Extensions>? Extensions { get; set; } = new();
 }
 
 /// <summary>

@@ -16,15 +16,15 @@ public class EnumField : WithCommentsBase
 {
     public required string Ident { get; set; }
     public required string Number { get; set; }
-    public required List<EnumValueOption> EnumValueOptions { get; set; }
+    public List<EnumValueOption>? EnumValueOptions { get; set; }
 }
 
 public class EnumBody
 {
-    public required List<Option> Options { get; set; }
-    public required List<EnumField> EnumFields { get; set; }
-    public required List<Reserved> Reserveds { get; set; }
-    public required List<EmptyStatement> EmptyStatements { get; set; }
+    public List<Option>? Options { get; set; }
+    public List<EnumField>? EnumFields { get; set; }
+    public List<Reserved>? Reserveds { get; set; }
+    public List<EmptyStatement>? EmptyStatements { get; set; }
 }
 
 /// <summary>

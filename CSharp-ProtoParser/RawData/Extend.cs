@@ -2,8 +2,8 @@ namespace YYHEggEgg.ProtoParser.RawData;
 
 public class ExtendBody
 {
-    public required List<Field> Fields { get; set; }
-    public required List<EmptyStatement> EmptyStatements { get; set; }
+    public List<Field>? Fields { get; set; }
+    public List<EmptyStatement>? EmptyStatements { get; set; }
 }
 
 /// <summary>

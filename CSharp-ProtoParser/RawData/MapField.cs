@@ -9,5 +9,5 @@ public class MapField : WithCommentsBase
     public required string Type { get; set; }
     public required string MapName { get; set; }
     public required string FieldNumber { get; set; }
-    public required List<FieldOption> FieldOptions { get; set; }
+    public List<FieldOption>? FieldOptions { get; set; }
 }

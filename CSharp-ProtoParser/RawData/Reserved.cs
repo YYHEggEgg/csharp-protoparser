@@ -15,6 +15,6 @@ public class Range
 /// </summary>
 public class Reserved : WithCommentsBase
 {
-    public required List<Range> Ranges { get; set; }
-    public required List<string> FieldNames { get; set; }
+    public List<Range>? Ranges { get; set; }
+    public List<string>? FieldNames { get; set; }
 }

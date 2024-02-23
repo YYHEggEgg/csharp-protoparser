@@ -26,5 +26,5 @@ public class Field : WithCommentsBase
     public required string Type { get; set; }
     public required string FieldName { get; set; }
     public required string FieldNumber { get; set; }
-    public required List<FieldOption> FieldOptions { get; set; }
+    public List<FieldOption>? FieldOptions { get; set; }
 }

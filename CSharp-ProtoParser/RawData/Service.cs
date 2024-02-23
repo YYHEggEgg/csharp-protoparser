@@ -26,13 +26,13 @@ public class RPC : WithInlineCommentWithLeftCurlyBase
     public required string RPCName { get; set; }
     public required RPCRequest RPCRequest { get; set; }
     public required RPCResponse RPCResponse { get; set; }
-    public required List<Option> Options { get; set; }
+    public List<Option>? Options { get; set; }
 }
 
 public class ServiceBody
 {
-    public required List<Option> Options { get; set; }
-    public required List<RPC> RPCs { get; set; }
+    public List<Option>? Options { get; set; }
+    public List<RPC>? RPCs { get; set; }
 }
 
 /// <summary>

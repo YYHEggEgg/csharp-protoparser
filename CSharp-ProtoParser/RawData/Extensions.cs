@@ -5,5 +5,5 @@ namespace YYHEggEgg.ProtoParser.RawData;
 /// </summary>
 public class Extensions : WithCommentsBase
 {
-    public required List<Range> Ranges { get; set; }
+    public List<Range>? Ranges { get; set; }
 }

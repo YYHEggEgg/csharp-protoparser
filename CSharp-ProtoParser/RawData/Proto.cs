@@ -13,14 +13,14 @@ public class ProtoMeta
 
 public class ProtoBody
 {
-    public required List<Import> Imports { get; set; }
-    public required List<Package> Packages { get; set; }
-    public required List<Option> Options { get; set; }
-    public required List<Message> Messages { get; set; }
-    public required List<Extend> Extends { get; set; }
-    public required List<EnumBase> Enums { get; set; }
-    public required List<Service> Services { get; set; }
-    public required List<EmptyStatement> EmptyStatements { get; set; }
+    public List<Import>? Imports { get; set; }
+    public List<Package>? Packages { get; set; }
+    public List<Option>? Options { get; set; }
+    public List<Message>? Messages { get; set; }
+    public List<Extend>? Extends { get; set; }
+    public List<EnumBase>? Enums { get; set; }
+    public List<Service>? Services { get; set; }
+    public List<EmptyStatement>? EmptyStatements { get; set; }
 }
 
 /// <summary>
@@ -31,5 +31,4 @@ public class Proto
     public required Syntax Syntax { get; set; }
     // ProtoBody is a slice of sum type consisted of *Import, *Package, *Option, *Message, *Enum, *Service, *Extend and *EmptyStatement.
     public required ProtoBody ProtoBody { get; set; }
-    public required ProtoMeta Meta { get; set; }
 }
