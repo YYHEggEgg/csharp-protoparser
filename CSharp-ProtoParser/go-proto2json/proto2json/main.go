@@ -11,6 +11,7 @@ import (
 
 	"github.com/spf13/pflag"
 	protoparser "github.com/yoheimuta/go-protoparser/v4"
+	"github.com/yoheimuta/go-protoparser/v4/interpret/unordered"
 )
 
 const StdoutDefaultId = "__<>_stdout"
@@ -21,7 +22,12 @@ func parseProto(input io.Reader) (string, error) {
 		return "", err
 	}
 
-	jsonBytes, err := json.Marshal(result)
+	unorderedResult, err := unordered.InterpretProto(result)
+	if err != nil {
+		return "", err
+	}
+
+	jsonBytes, err := json.Marshal(unorderedResult)
 	if err != nil {
 		return "", err
 	}
