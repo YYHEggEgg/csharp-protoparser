@@ -50,7 +50,9 @@
     <_Asset PackagePath="build/linux_x64" Include="$(Asset_Proto2jsonBuild)/linux_x64/go-proto2json" />
     <_Asset PackagePath="build/linux_arm64" Include="$(Asset_Proto2jsonBuild)/linux_arm64/go-proto2json" />
 
-    <None Include="@(_Asset)" Pack="true" Visible="false" />
+    <EmbeddedResource Include="@(_Asset)">
+      <Pack>True</Pack>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

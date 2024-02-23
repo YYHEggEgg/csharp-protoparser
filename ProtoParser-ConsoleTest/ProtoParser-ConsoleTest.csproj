@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="EggEgg.CSharp-Logger" Version="4.0.3-rc51" />
-    <PackageReference Include="EggEgg.CSharp-ProtoParser" Version="1.0.0-dev03" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp-ProtoParser\CSharp-ProtoParser.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,10 +8,20 @@ Log.Initialize(new LoggerConfig
     Max_Output_Char_Count = -1
 });
 
+Log.Info("Embedded Resources List:");
+var assembly = typeof(ExecutableInvoke).Assembly;
+foreach (var res in assembly.GetManifestResourceNames())
+    Log.Info($"  {res}");
+Log.Info("");
+
+Log.Info($"Made proto2json available at: '{await ExecutableInvoke.GetProto2jsonPathAsync()}'");
+
 Log.Info("Please give the directory path to .proto files:");
 var protoPath = Console.ReadLine() ?? throw new ArgumentNullException();
 
 Log.Info("Now directory test...");
+await ProtoParser.ParseFromDirectoryAsync(protoPath, "logs");
+
 var dictFrmDir = await ProtoParser.ParseFromDirectoryAsync(protoPath);
 foreach (var pair in dictFrmDir)
 {
