@@ -95,11 +95,6 @@ func main() {
 			fmt.Fprintf(os.Stderr, "Error reading stdin: %v\n", err)
 			os.Exit(1)
 		}
-		// fmt.Fprintf(os.Stderr, "Read data from stdin")
-		// last20Bytes := stdindata[len(stdindata)-20:]
-		// for _, b := range last20Bytes {
-		// 	fmt.Fprintln(os.Stderr, b)
-		// }
 
 		jsonResult, err := parseProto(bytes.NewReader(stdindata))
 		if err != nil {

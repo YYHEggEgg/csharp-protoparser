@@ -54,26 +54,18 @@ public static partial class ExecutableInvoke
 
     internal static async Task<Proto?> StartProcessStdinAsync(string protoText)
     {
-#if PROPER_STDIN_IMPL
         var argumentList = $"--stdin";
         var proc = await StartProto2jsonCoreAsync(argumentList, protoText);
+        var resText = await proc.StandardOutput.ReadToEndAsync();
         await proc.WaitForExitAsync();
         if (proc.ExitCode != 0)
         {
             throw new ApplicationException($"The go-proto2json process exited with code {proc.ExitCode}.");
         }
-        var resText = await proc.StandardOutput.ReadToEndAsync();
 #if NET8_0_OR_GREATER
         return JsonSerializer.Deserialize<Proto>(resText, ProtoContext.Default.Proto);
 #else
         return JsonSerializer.Deserialize<Proto>(resText);
-#endif
-#else
-        var tmpfile = Path.Combine(Path.GetTempPath(), "EggEgg.CSharp-ProtoParser", Guid.NewGuid().ToString("D"));
-        File.WriteAllText(tmpfile, protoText);
-        var res = await StartProcessFilesAsync(new string[] { tmpfile }, null);
-        File.Delete(tmpfile);
-        return res.First().Value;
 #endif
     }
 
