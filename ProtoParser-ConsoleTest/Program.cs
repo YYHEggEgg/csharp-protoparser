@@ -14,7 +14,7 @@ foreach (var res in assembly.GetManifestResourceNames())
     Log.Info($"  {res}");
 Log.Info("");
 
-Log.Info($"Made proto2json available at: '{await ExecutableInvoke.GetProto2jsonPathAsync()}'");
+Log.Info($"Made proto2json available at: '{ExecutableInvoke.GetProto2jsonPath()}'");
 
 Log.Info("Please give the directory path to .proto files:");
 var protoPath = Console.ReadLine() ?? throw new ArgumentNullException();

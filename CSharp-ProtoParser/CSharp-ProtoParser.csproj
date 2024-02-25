@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>EggEgg.$(AssemblyName)</Title>
-    <Version>1.0.0-beta50</Version>
+    <Version>1.0.0-beta51</Version>
     <Authors>YYHEggEgg</Authors>
     <Company>YYHEggEgg</Company>
     <Description>A .proto file parser compatiable with go-protoparser.</Description>
@@ -40,19 +40,23 @@
   </PropertyGroup>
 
   <ItemGroup Label="NuGet package assets">
-    <_Asset PackagePath="build/windows_x86" Include="$(Asset_Proto2jsonBuild)/windows_x86/go-proto2json.exe" />
-    <_Asset PackagePath="build/windows_x64" Include="$(Asset_Proto2jsonBuild)/windows_x64/go-proto2json.exe" />
-    <_Asset PackagePath="build/windows_arm64" Include="$(Asset_Proto2jsonBuild)/windows_arm64/go-proto2json.exe" />
-    <_Asset PackagePath="build/macosx_x86" Include="$(Asset_Proto2jsonBuild)/macosx_x86/go-proto2json" />
-    <_Asset PackagePath="build/macosx_x64" Include="$(Asset_Proto2jsonBuild)/macosx_x64/go-proto2json" />
-    <_Asset PackagePath="build/macosx_arm64" Include="$(Asset_Proto2jsonBuild)/macosx_arm64/go-proto2json" />
-    <_Asset PackagePath="build/linux_x86" Include="$(Asset_Proto2jsonBuild)/linux_x86/go-proto2json" />
-    <_Asset PackagePath="build/linux_x64" Include="$(Asset_Proto2jsonBuild)/linux_x64/go-proto2json" />
-    <_Asset PackagePath="build/linux_arm64" Include="$(Asset_Proto2jsonBuild)/linux_arm64/go-proto2json" />
+    <_Asset PackagePath="build/Windows_X86" Include="$(Asset_Proto2jsonBuild)/Windows_X86/go-proto2json.exe" />
+    <_Asset PackagePath="build/Windows_X64" Include="$(Asset_Proto2jsonBuild)/Windows_X64/go-proto2json.exe" />
+    <_Asset PackagePath="build/Windows_Arm64" Include="$(Asset_Proto2jsonBuild)/Windows_Arm64/go-proto2json.exe" />
+    <_Asset PackagePath="build/MacOSX_X86" Include="$(Asset_Proto2jsonBuild)/MacOSX_X86/go-proto2json" />
+    <_Asset PackagePath="build/MacOSX_X64" Include="$(Asset_Proto2jsonBuild)/MacOSX_X64/go-proto2json" />
+    <_Asset PackagePath="build/MacOSX_Arm64" Include="$(Asset_Proto2jsonBuild)/MacOSX_Arm64/go-proto2json" />
+    <_Asset PackagePath="build/Linux_X86" Include="$(Asset_Proto2jsonBuild)/Linux_X86/go-proto2json" />
+    <_Asset PackagePath="build/Linux_X64" Include="$(Asset_Proto2jsonBuild)/Linux_X64/go-proto2json" />
+    <_Asset PackagePath="build/Linux_Arm64" Include="$(Asset_Proto2jsonBuild)/Linux_Arm64/go-proto2json" />
 
     <EmbeddedResource Include="@(_Asset)">
       <Pack>True</Pack>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="go-proto2json" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -51,7 +51,7 @@ func processFile(filePath string, outputDir string) error {
 		fmt.Fprintf(os.Stdout, "%s=>%s\n", filePath, jsonResult)
 	} else {
 		outputPath := filepath.Join(outputDir, filepath.Base(filePath)+".json")
-		err = ioutil.WriteFile(outputPath, []byte(jsonResult), 0644)
+		err = os.WriteFile(outputPath, []byte(jsonResult), 0644)
 		if err != nil {
 			return err
 		}
@@ -90,7 +90,18 @@ func main() {
 	outputDir := *fout
 
 	if *stdin {
-		jsonResult, err := parseProto(os.Stdin)
+		stdindata, err := io.ReadAll(io.Reader(os.Stdin))
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading stdin: %v\n", err)
+			os.Exit(1)
+		}
+		// fmt.Fprintf(os.Stderr, "Read data from stdin")
+		// last20Bytes := stdindata[len(stdindata)-20:]
+		// for _, b := range last20Bytes {
+		// 	fmt.Fprintln(os.Stderr, b)
+		// }
+
+		jsonResult, err := parseProto(bytes.NewReader(stdindata))
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error parsing proto: %v\n", err)
 			os.Exit(1)
@@ -100,7 +111,7 @@ func main() {
 			fmt.Fprintf(os.Stdout, "%s", jsonResult)
 		} else {
 			outputPath := filepath.Join(outputDir, "parser.from-stdin.json")
-			err = ioutil.WriteFile(outputPath, []byte(jsonResult), 0644)
+			err = os.WriteFile(outputPath, []byte(jsonResult), 0644)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Error writing output file: %v\n", err)
 				os.Exit(1)

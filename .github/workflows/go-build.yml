@@ -1,0 +1,44 @@
+name: go-proto2json Build
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  go-proto2json-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Build
+        run: cd CSharp-ProtoParser/go-proto2json | ./build.sh
+
+      - name: Archive build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Builds_Ubuntu
+          path: CSharp-ProtoParser/go-proto2json/build
+          retention-days: 42
+
+  go-proto2json-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Build
+        run: cd CSharp-ProtoParser/go-proto2json | ./build.ps1
+
+      - name: Archive build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Builds_Windows
+          path: CSharp-ProtoParser/go-proto2json/build
+          retention-days: 42
