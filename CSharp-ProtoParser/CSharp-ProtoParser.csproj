@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>EggEgg.$(AssemblyName)</Title>
-    <Version>1.0.0-rc53</Version>
+    <Version>1.0.0-rc54</Version>
     <Authors>YYHEggEgg</Authors>
     <Company>YYHEggEgg</Company>
     <Description>A .proto file parser compatiable with go-protoparser.</Description>

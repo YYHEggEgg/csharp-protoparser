@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace YYHEggEgg.ProtoParser.RawProtoHandler;
+namespace YYHEggEgg.ProtoParser;
 
 public class CommonResult
 {
