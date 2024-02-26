@@ -8,7 +8,11 @@ public class Position
     /// <summary>
     /// Filename is a name of file, if any
     /// </summary>
+#if NET7_0_OR_GREATER
     public required string Filename { get; set; }
+#else
+    public string Filename { get; set; } = null!;
+#endif
     /// <summary>
     /// Offset is a byte offset, starting at 0
     /// </summary>

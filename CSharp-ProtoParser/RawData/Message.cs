@@ -20,10 +20,18 @@ public class MessageBody
 /// </summary>
 public class Message : WithInlineCommentWithLeftCurlyBase
 {
+#if NET7_0_OR_GREATER
     public required string MessageName { get; set; }
+#else
+    public string MessageName { get; set; } = null!;
+#endif
     /// <summary>
     /// MessageBody can have fields, nested enum definitions, nested message definitions,
 	/// options, oneofs, map fields, group fields(proto2 only), extends, reserved, and extensions(proto2 only) statements.
     /// </summary>
+#if NET7_0_OR_GREATER
     public required MessageBody MessageBody { get; set; }
+#else
+    public MessageBody MessageBody { get; set; } = null!;
+#endif
 }

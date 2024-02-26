@@ -8,5 +8,9 @@ using ImportModifier = UInt32;
 public class Import : WithCommentsBase
 {
     public ImportModifier Modifier { get; set; }
+#if NET7_0_OR_GREATER
     public required string Location { get; set; }
+#else
+    public string Location { get; set; } = null!;
+#endif
 }

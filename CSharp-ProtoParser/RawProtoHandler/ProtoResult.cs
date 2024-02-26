@@ -5,8 +5,16 @@ namespace YYHEggEgg.ProtoParser.RawProtoHandler;
 
 public class CommonResult
 {
+#if NET7_0_OR_GREATER
     public required string FieldType { get; set; }
+#else
+    public string FieldType { get; set; } = null!;
+#endif
+#if NET7_0_OR_GREATER
     public required string FieldName { get; set; }
+#else
+    public string FieldName { get; set; } = null!;
+#endif
     public int FieldNumber { get; set; }
     public bool IsRepeatedField { get; set; } = false;
     public bool IsImportType { get; set; } = false;
@@ -69,11 +77,23 @@ public class CommonResult
 
 public class MapResult
 {
+#if NET7_0_OR_GREATER
     public required string KeyType { get; set; }
+#else
+    public string KeyType { get; set; } = null!;
+#endif
     public bool KeyIsImportType { get; set; } = false;
+#if NET7_0_OR_GREATER
     public required string ValueType { get; set; }
+#else
+    public string ValueType { get; set; } = null!;
+#endif
     public bool ValueIsImportType { get; set; } = false;
+#if NET7_0_OR_GREATER
     public required string FieldName { get; set; }
+#else
+    public string FieldName { get; set; } = null!;
+#endif
     public int FieldNumber { get; set; }
 
     public override string ToString()
@@ -134,7 +154,11 @@ public class MapResult
 
 public class OneofResult
 {
+#if NET7_0_OR_GREATER
     public required string OneofEntryName { get; set; }
+#else
+    public string OneofEntryName { get; set; } = null!;
+#endif
     public List<CommonResult> OneofInnerFields { get; set; } = new();
 
     public override string ToString()
@@ -214,7 +238,11 @@ public class OneofResult
 
 public class EnumResult
 {
+#if NET7_0_OR_GREATER
     public required string EnumName { get; set; }
+#else
+    public string EnumName { get; set; } = null!;
+#endif
     public List<(string name, int number)> EnumNodes { get; set; } = new();
     public List<(string name, string constant)> EnumOptions { get; set; } = new();
 
@@ -315,7 +343,11 @@ public class EnumResult
 
 public class MessageResult
 {
+#if NET7_0_OR_GREATER
     public required string MessageName { get; set; }
+#else
+    public string MessageName { get; set; } = null!;
+#endif
     public List<CommonResult> CommonFields { get; set; } = new();
     public List<MapResult> MapFields { get; set; } = new();
     public List<OneofResult> OneofFields { get; set; } = new();

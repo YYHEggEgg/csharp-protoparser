@@ -5,5 +5,9 @@ namespace YYHEggEgg.ProtoParser.RawData;
 /// </summary>
 public class Package : WithCommentsBase
 {
+#if NET7_0_OR_GREATER
     public required string Name { get; set; }
+#else
+    public string Name { get; set; } = null!;
+#endif
 }

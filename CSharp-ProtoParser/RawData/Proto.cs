@@ -8,7 +8,11 @@ public class ProtoMeta
     /// <summary>
     /// Filename is a name of file, if any.
     /// </summary>
+#if NET7_0_OR_GREATER
     public required string Filename { get; set; }
+#else
+    public string Filename { get; set; } = null!;
+#endif
 }
 
 public class ProtoBody
@@ -28,7 +32,17 @@ public class ProtoBody
 /// </summary>
 public class Proto
 {
+#if NET7_0_OR_GREATER
     public required Syntax Syntax { get; set; }
-    // ProtoBody is a slice of sum type consisted of *Import, *Package, *Option, *Message, *Enum, *Service, *Extend and *EmptyStatement.
+#else
+    public Syntax Syntax { get; set; } = null!;
+#endif
+    /// <summary>
+    /// ProtoBody is a slice of sum type consisted of *Import, *Package, *Option, *Message, *Enum, *Service, *Extend and *EmptyStatement.
+    /// </summary>
+#if NET7_0_OR_GREATER
     public required ProtoBody ProtoBody { get; set; }
+#else
+    public ProtoBody ProtoBody { get; set; } = null!;
+#endif
 }

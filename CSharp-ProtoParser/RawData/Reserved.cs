@@ -5,7 +5,11 @@ namespace YYHEggEgg.ProtoParser.RawData;
 /// </summary>
 public class Range
 {
+#if NET7_0_OR_GREATER
     public required string Begin { get; set; }
+#else
+    public string Begin { get; set; } = null!;
+#endif
     public string? End { get; set; }
 }
 
