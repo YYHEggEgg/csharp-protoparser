@@ -8,6 +8,11 @@ Log.Initialize(new LoggerConfig
     Max_Output_Char_Count = -1,
 });
 
+// #if !NETCORE && !NETSTANDARD
+#if !NETCOREAPP && !NETSTANDARD
+Warn("Not recognized as NETCORE or NETSTANDARD. Maybe consider abandon judging by NETCORE..?");
+#endif
+
 Log.Info("Embedded Resources List:");
 var assembly = typeof(ExecutableInvoke).Assembly;
 foreach (var res in assembly.GetManifestResourceNames())

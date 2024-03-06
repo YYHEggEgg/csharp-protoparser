@@ -15,6 +15,15 @@ public static partial class ExecutableInvoke
         return oskind == CommonPlatformDetection.OSKind.Windows ? "go-proto2json.exe" : "go-proto2json";
     }
 
+    private static string GetProto2jsonExecutableExtractName(CommonPlatformDetection.OSKind oskind = default, CommonPlatformDetection.CpuArchitecture cpuArchitecture = default)
+    {
+        if (oskind == default) oskind = CommonPlatformDetection.GetOSKind();
+        if (cpuArchitecture == default) cpuArchitecture = CommonPlatformDetection.GetProcessArchitecture();
+
+        var sha256sum = GetProto2jsonSHA256(oskind, cpuArchitecture);
+        return oskind == CommonPlatformDetection.OSKind.Windows ? $"go-proto2json-{sha256sum}.exe" : $"go-proto2json-{sha256sum}";
+    }
+
     [DoesNotReturn]
     private static string ThrowOnUnsupportedOSKind() =>
         throw new PlatformNotSupportedException("Your OS platform is not supported by this program.");
@@ -44,7 +53,7 @@ public static partial class ExecutableInvoke
         var tmpdir = Path.GetTempPath();
         var dir = Path.Combine(tmpdir, "EggEgg.CSharp-ProtoParser");
         Directory.CreateDirectory(dir);
-        var executable = Path.Combine(dir, GetProto2jsonExecutableName());
+        var executable = Path.Combine(dir, GetProto2jsonExecutableExtractName());
         if (ValidateExecutable(executable)) return executable;
 
         lock (initProto2jsonLock)

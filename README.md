@@ -4,6 +4,13 @@ csharp-protoparser is a .proto file parser compatiable with go-protoparser.
 
 [![NuGet](https://img.shields.io/nuget/v/EggEgg.CSharp-ProtoParser.svg)](https://www.nuget.org/packages/EggEgg.CSharp-ProtoParser)
 
+## Changelog
+
+### v1.1.0
+
+- Fixed the issue whereby `arm64` CPU arch devices are accidentally recognized as `x64` CPU arch.
+- Fixed the issue whereby using multiple versions of this nuget on the same device may conflict with each other.
+
 ## Usage
 
 Simple:

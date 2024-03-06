@@ -33,7 +33,7 @@ namespace Grpc.Core.Internal
 
         public static OSKind GetOSKind()
         {
-#if NETSTANDARD || NETCORE
+#if NETSTANDARD || NETCOREAPP
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return OSKind.Windows;
@@ -76,7 +76,7 @@ namespace Grpc.Core.Internal
 
         public static CpuArchitecture GetProcessArchitecture()
         {
-#if NETSTANDARD || NETCORE  
+#if NETSTANDARD || NETCOREAPP
             switch (RuntimeInformation.ProcessArchitecture)
             {
                 case Architecture.X86:
