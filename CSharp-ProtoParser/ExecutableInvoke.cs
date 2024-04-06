@@ -90,9 +90,14 @@ public static partial class ExecutableInvoke
             if (argumentList.Length + appendOutput.Length >= MAXIMUM_CREATEPROC_LENGTH)
             {
                 argumentList.Append(appendOutput);
+                procs.Add(await StartProto2jsonCoreAsync(argumentList.ToString(), null));
+                argumentList = new StringBuilder();
             }
+        }
+        if (argumentList.Length > 0)
+        {
+            argumentList.Append(appendOutput);
             procs.Add(await StartProto2jsonCoreAsync(argumentList.ToString(), null));
-            argumentList = new StringBuilder();
         }
 
         Dictionary<string, Proto?> result = new Dictionary<string, Proto?>();

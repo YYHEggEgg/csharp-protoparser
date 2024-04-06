@@ -437,12 +437,14 @@ public class MessageResult
 
 public class ProtoJsonResult
 {
+    public string? Syntax { get; set; } = null!;
+
     public List<MessageResult> MessageBodys { get; set; } = new();
     public List<EnumResult> EnumBodys { get; set; } = new();
 
     public override string ToString()
     {
-        string result = "";
+        string result = $"syntax={Syntax};\n";
         foreach (MessageResult Message in MessageBodys)
         {
             result += $"{Message}\n";

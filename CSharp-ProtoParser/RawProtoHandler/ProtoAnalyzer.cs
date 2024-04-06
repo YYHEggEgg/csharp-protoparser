@@ -7,9 +7,12 @@ public static class ProtoJsonRawDataAnalyzer
     public static readonly string[] nativeTypes = new string[] { "double", "float", "int32", "int64", "uint32", "uint64", "sint32", "sint64", "fixed32", "fixed64", "sfixed32", "sfixed64", "bool", "string", "bytes" };
     public static ProtoJsonResult AnalyzeRawProto(Proto? proto)
     {
-        var result = new ProtoJsonResult();
-        if (proto == null) return result;
+        if (proto == null) return new();
 
+        var result = new ProtoJsonResult
+        {
+            Syntax = proto.Syntax.ProtobufVersion,
+        };
         var protoBodies = proto.ProtoBody;
 
         if (protoBodies.Messages != null)
