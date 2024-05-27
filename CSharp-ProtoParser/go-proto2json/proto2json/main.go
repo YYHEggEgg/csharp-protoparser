@@ -7,7 +7,6 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/spf13/pflag"
 	protoparser "github.com/yoheimuta/go-protoparser/v4"
@@ -60,13 +59,21 @@ func processFile(filePath string, outputDir string) error {
 	return nil
 }
 
-func processDir(dirPath string, outputDir string) error {
+func processDir(dirPath string, outputDir string, dirFilter string) error {
 	err := filepath.Walk(dirPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 
-		if !info.IsDir() && strings.HasSuffix(path, ".proto") {
+		if info.IsDir() {
+            return nil
+        }
+
+        ismatch, err := filepath.Match(dirFilter, info.Name())
+        if err != nil {
+            return err
+        }
+        if ismatch {
 			err := processFile(path, outputDir)
 			if err != nil {
 				return err
@@ -84,6 +91,7 @@ func main() {
 	files := pflag.StringSlice("file", []string{}, "Read from specified file(s)")
 	dir := pflag.String("dir", "", "Read from specified directory")
 	fout := pflag.String("fout", StdoutDefaultId, "Output directory")
+    dirFilter := pflag.String("dir-filter", "*.proto", "The filter pattern for selecting file from --dir")
 
 	pflag.Parse()
 
@@ -125,7 +133,7 @@ func main() {
 	}
 
 	if *dir != "" {
-		err := processDir(*dir, outputDir)
+		err := processDir(*dir, outputDir, *dirFilter)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error processing directory %s: %v\n", *dir, err)
 			os.Exit(1)

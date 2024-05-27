@@ -18,17 +18,17 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <returns>The dictionary of found file and its proto2json result.</returns>
-    /// <remarks>You may want to use <see cref="ParseFromDirectoryAsync(string)"/> instead.</remarks>
-    public static async Task<Dictionary<string, Proto?>> ParseFromDirectoryAsRawAsync(string dirPath) =>
-        await ExecutableInvoke.StartProcessDirAsync(dirPath, null);
+    /// <remarks>You may want to use <see cref="ParseFromDirectoryAsync(string, string)"/> instead.</remarks>
+    public static async Task<Dictionary<string, Proto?>> ParseFromDirectoryAsRawAsync(string dirPath, string dirFilter = "*.proto") =>
+        await ExecutableInvoke.StartProcessDirAsync(dirPath, null, dirFilter);
 
     /// <summary>
     /// Parse .proto files under a directory (recursive), and make files available at <paramref name="outputPath"/>.
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <param name="outputPath">The path you want to store [filename].proto.json files.</param>
-    public static async Task ParseFromDirectoryAsync(string dirPath, string outputPath) =>
-        await ExecutableInvoke.StartProcessDirAsync(dirPath, outputPath);
+    public static async Task ParseFromDirectoryAndOutputAsync(string dirPath, string outputPath, string dirFilter = "*.proto") =>
+        await ExecutableInvoke.StartProcessDirAsync(dirPath, outputPath, dirFilter);
 
     /// <summary>
     /// Parse specified .proto files, and return the result dictionary.
@@ -44,7 +44,7 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="fileList">The files you want to process.</param>
     /// <param name="outputPath">The path you want to store [filename].proto.json files.</param>
-    public static async Task ParseFromFilesAsync(IEnumerable<string> fileList, string outputPath) =>
+    public static async Task ParseFromFilesAndOutputAsync(IEnumerable<string> fileList, string outputPath) =>
         await ExecutableInvoke.StartProcessFilesAsync(fileList, outputPath);
 
     /// <summary>
@@ -60,15 +60,15 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <returns>The dictionary of found file and its proto2json result.</returns>
-    /// <remarks>You may want to use <see cref="ParseFromDirectory(string)"/> instead.</remarks>
-    public static Dictionary<string, Proto?> ParseFromDirectoryAsRaw(string dirPath) => ParseFromDirectoryAsRawAsync(dirPath).Result;
+    /// <remarks>You may want to use <see cref="ParseFromDirectory(string, string)"/> instead.</remarks>
+    public static Dictionary<string, Proto?> ParseFromDirectoryAsRaw(string dirPath, string dirFilter = "*.proto") => ParseFromDirectoryAsRawAsync(dirPath, dirFilter).Result;
 
     /// <summary>
     /// Parse .proto files under a directory (recursive), and make files available at <paramref name="outputPath"/>.
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <param name="outputPath">The path you want to store [filename].proto.json files.</param>
-    public static void ParseFromDirectory(string dirPath, string outputPath) => ParseFromDirectoryAsync(dirPath, outputPath).Wait();
+    public static void ParseFromDirectoryAndOutput(string dirPath, string outputPath, string dirFilter = "*.proto") => ParseFromDirectoryAndOutputAsync(dirPath, outputPath, dirFilter).Wait();
 
     /// <summary>
     /// Parse specified .proto files, and return the result dictionary.
@@ -83,5 +83,5 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="fileList">The files you want to process.</param>
     /// <param name="outputPath">The path you want to store [filename].proto.json files.</param>
-    public static void ParseFromFiles(IEnumerable<string> fileList, string outputPath) => ParseFromFilesAsync(fileList, outputPath).Wait();
+    public static void ParseFromFilesAndOutput(IEnumerable<string> fileList, string outputPath) => ParseFromFilesAndOutputAsync(fileList, outputPath).Wait();
 }

@@ -17,8 +17,8 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <returns>The dictionary of found file (Full Path) and its proto2json result.</returns>
-    public static async Task<Dictionary<string, ProtoJsonResult>> ParseFromDirectoryAsync(string dirPath) =>
-        new Dictionary<string, ProtoJsonResult>((await ParseFromDirectoryAsRawAsync(dirPath)).Select(
+    public static async Task<Dictionary<string, ProtoJsonResult>> ParseFromDirectoryAsync(string dirPath, string dirFilter = "*.proto") =>
+        new Dictionary<string, ProtoJsonResult>((await ParseFromDirectoryAsRawAsync(dirPath, dirFilter)).Select(
             x => new KeyValuePair<string, ProtoJsonResult>(x.Key, ProtoJsonRawDataAnalyzer.AnalyzeRawProto(x.Value))));
 
     /// <summary>
@@ -42,7 +42,7 @@ public static partial class ProtoParser
     /// </summary>
     /// <param name="dirPath">The directory you want to process.</param>
     /// <returns>The dictionary of found file (Full Path) and its proto2json result.</returns>
-    public static Dictionary<string, ProtoJsonResult> ParseFromDirectory(string dirPath) => ParseFromDirectoryAsync(dirPath).Result;
+    public static Dictionary<string, ProtoJsonResult> ParseFromDirectory(string dirPath, string dirFilter = "*.proto") => ParseFromDirectoryAsync(dirPath, dirFilter).Result;
 
     /// <summary>
     /// Parse specified .proto files, and return the result dictionary.

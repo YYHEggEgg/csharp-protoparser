@@ -42,11 +42,11 @@ public static partial class ExecutableInvoke
         return result;
     }
 
-    internal static async Task<Dictionary<string, Proto?>> StartProcessDirAsync(string dirPath, string? outputPath)
+    internal static async Task<Dictionary<string, Proto?>> StartProcessDirAsync(string dirPath, string? outputPath, string dirFilter)
     {
         AssertValidOutputPath(outputPath);
 
-        var argumentList = $"--dir \"{Path.GetFullPath(dirPath)}\"";
+        var argumentList = $"--dir \"{Path.GetFullPath(dirPath)}\" --dir-filter \"{dirFilter}\"";
         if (outputPath != null) argumentList += $" --fout \"{Path.GetFullPath(outputPath)}\"";
         var proc = await StartProto2jsonCoreAsync(argumentList, null);
         return await ParseProcessStdoutAsync(proc);

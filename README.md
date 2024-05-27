@@ -10,6 +10,13 @@ csharp-protoparser is a .proto file parser compatiable with go-protoparser.
 
 - Fixed the issue whereby `arm64` CPU arch devices are accidentally recognized as `x64` CPU arch.
 - Fixed the issue whereby using multiple versions of this nuget on the same device may conflict with each other.
+- Now `ProtoParser.ParseFromDirectoryAsync` support an optional parameter `dirFilter` so as you can filter files with a certain pattern.
+
+#### Breaking Changes
+
+- Due to overloads' probable conflict, these methods are renamed:
+  - `ProtoParser.ParseFromDirectoryAsync(string dirPath, string outputPath)` -> `ProtoParser.ParseFromDirectoryAndOutputAsync(string dirPath, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
+  - `ProtoParser.ParseFromFilesAsync(IEnumerable<string> fileList, string outputPath)` -> `ProtoParser.ParseFromFilesAndOutputAsync(IEnumerable<string> fileList, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
 
 ## Usage
 
@@ -32,10 +39,10 @@ Console.WriteLine(JsonSerializer.Serialize(filesParsed["D:\\test\\protos\\file1.
 // Or you can let the input be a directory's all .proto files:
 var dir = "test/protos";
 // Returns a similar dictionary as below.
-var dirParsed = await ProtoParser.ParseFromDirectoryAsync(dir);
+var dirParsed = await ProtoParser.ParseFromDirectoryAsync(dir, "*.proto");
 
 // You may want to output content to directory, not memory:
-await ProtoParser.ParseFromDirectoryAsync(dir, "Proto2json_Output");
+await ProtoParser.ParseFromDirectoryAndOutputAsync(dir, "Proto2json_Output");
 // But you need to process them yourself.
 var dirParsedOne = ProtoJsonRawDataAnalyzer.AnalyzeRawProto(
     JsonSerializer.Deserialize<Proto>(File.ReadAllText("D:\\Proto2json_Output\\file1.proto.json"))
