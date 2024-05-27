@@ -15,6 +15,26 @@ public static class ProtoJsonRawDataAnalyzer
         };
         var protoBodies = proto.ProtoBody;
 
+        if (protoBodies.Packages != null)
+            foreach (var package in protoBodies.Packages)
+                result.PackageDefinitions.Add(package.Name);
+        if (protoBodies.Imports != null)
+            foreach (var import in protoBodies.Imports)
+            {
+                var location = import.Location;
+                if ((location.StartsWith('"') && location.EndsWith('"')) ||
+                    (location.StartsWith('\'') && location.EndsWith('\'')))
+                    location = location[1..^1];
+                result.ImportedFiles.Add(location);
+            }
+        if (protoBodies.Options != null)
+            foreach (var option in protoBodies.Options)
+                result.Options.Add(new()
+                {
+                    OptionName = option.OptionName,
+                    Constant = option.Constant,
+                });
+
         if (protoBodies.Messages != null)
             foreach (var body in protoBodies.Messages)
             {

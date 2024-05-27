@@ -79,14 +79,14 @@ namespace YYHEggEgg.ProtoParser;
 
 public static partial class ExecutableInvoke
 {
-    private const string SHA256_WINDOWS_X86 = "$sha256_windows_x86";
-    private const string SHA256_WINDOWS_X64 = "$sha256_windows_x64";
-    private const string SHA256_WINDOWS_ARM64 = "$sha256_windows_arm64";
-    private const string SHA256_MACOSX_X86 = "$sha256_macosx_x86";
-    private const string SHA256_MACOSX_X64 = "$sha256_macosx_x64";
-    private const string SHA256_MACOSX_ARM64 = "$sha256_macosx_arm64";
-    private const string SHA256_LINUX_X86 = "$sha256_linux_x86";
-    private const string SHA256_LINUX_X64 = "$sha256_linux_x64";
-    private const string SHA256_LINUX_ARM64 = "$sha256_linux_arm64";
+    private static readonly string SHA256_WINDOWS_X86 = "$sha256_windows_x86".ToUpperInvariant();
+    private static readonly string SHA256_WINDOWS_X64 = "$sha256_windows_x64".ToUpperInvariant();
+    private static readonly string SHA256_WINDOWS_ARM64 = "$sha256_windows_arm64".ToUpperInvariant();
+    private static readonly string SHA256_MACOSX_X86 = "$sha256_macosx_x86".ToUpperInvariant();
+    private static readonly string SHA256_MACOSX_X64 = "$sha256_macosx_x64".ToUpperInvariant();
+    private static readonly string SHA256_MACOSX_ARM64 = "$sha256_macosx_arm64".ToUpperInvariant();
+    private static readonly string SHA256_LINUX_X86 = "$sha256_linux_x86".ToUpperInvariant();
+    private static readonly string SHA256_LINUX_X64 = "$sha256_linux_x64".ToUpperInvariant();
+    private static readonly string SHA256_LINUX_ARM64 = "$sha256_linux_arm64".ToUpperInvariant();
 }
 EOT

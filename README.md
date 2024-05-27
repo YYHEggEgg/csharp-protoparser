@@ -11,12 +11,13 @@ csharp-protoparser is a .proto file parser compatiable with go-protoparser.
 - Fixed the issue whereby `arm64` CPU arch devices are accidentally recognized as `x64` CPU arch.
 - Fixed the issue whereby using multiple versions of this nuget on the same device may conflict with each other.
 - Now `ProtoParser.ParseFromDirectoryAsync` support an optional parameter `dirFilter` so as you can filter files with a certain pattern.
+- Added representation of `import`, `package` and `option` in `ProtoResult`. You can refer to `ProtoResult` definition for more information. **Notice the `""` in `import` definitions will be wiped out (while in `Parse...AsRaw` it will not).**
 
 #### Breaking Changes
 
-- Due to overloads' probable conflict, these methods are renamed:
-  - `ProtoParser.ParseFromDirectoryAsync(string dirPath, string outputPath)` -> `ProtoParser.ParseFromDirectoryAndOutputAsync(string dirPath, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
-  - `ProtoParser.ParseFromFilesAsync(IEnumerable<string> fileList, string outputPath)` -> `ProtoParser.ParseFromFilesAndOutputAsync(IEnumerable<string> fileList, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
+- Due to overloads' probable conflict, these methods of `ProtoParser` are renamed:
+  - `ParseFromDirectoryAsync(string dirPath, string outputPath)` -> `ParseFromDirectoryAndOutputAsync(string dirPath, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
+  - `ParseFromFilesAsync(IEnumerable<string> fileList, string outputPath)` -> `ParseFromFilesAndOutputAsync(IEnumerable<string> fileList, string outputPath, string dirFilter = "*.proto")` and its syncronous version.
 
 ## Usage
 

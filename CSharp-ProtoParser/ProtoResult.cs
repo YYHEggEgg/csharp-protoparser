@@ -435,16 +435,49 @@ public class MessageResult
     #endregion
 }
 
+public class OptionResult
+{
+#if NET7_0_OR_GREATER
+    public required string OptionName { get; set; }
+    public required string Constant { get; set; }
+#else
+    public string OptionName { get; set; } = null!;
+    public string Constant { get; set; } = null!;
+#endif
+
+    public override string ToString()
+    {
+        return $"option {OptionName} = '{Constant}';";
+    }
+}
+
 public class ProtoJsonResult
 {
-    public string? Syntax { get; set; } = null!;
+    public string? Syntax { get; set; } = null;
 
+    public List<string> PackageDefinitions { get; set; } = new();
+    public List<string> ImportedFiles { get; set; } = new();
+    public List<OptionResult> Options { get; set; } = new();
     public List<MessageResult> MessageBodys { get; set; } = new();
     public List<EnumResult> EnumBodys { get; set; } = new();
 
     public override string ToString()
     {
-        string result = $"syntax={Syntax};\n";
+        string result = $"syntax={Syntax};\nPackage: ";
+        foreach (var package in PackageDefinitions)
+        {
+            result += $"{package}; ";
+        }
+        result += "\nImported: ";
+        foreach (string import in ImportedFiles)
+        {
+            result += $"'{import}'; ";
+        }
+        result += "\n";
+        foreach (OptionResult option in Options)
+        {
+            result += $"{option}\n";
+        }
         foreach (MessageResult Message in MessageBodys)
         {
             result += $"{Message}\n";
