@@ -6,6 +6,15 @@ csharp-protoparser is a .proto file parser compatiable with go-protoparser.
 
 ## Changelog
 
+### v1.1.1
+
+- Supported Comments for fields, messages and enums definitions. **Known issue: Comment before message definition's left curly will be lost (protoparser issue).**
+  ```proto
+  // Comment
+  message AbilityActionBlink // This inline comment won't be parsed at all
+  { // Inline comment behind left curly
+  ```
+
 ### v1.1.0
 
 - Fixed the issue whereby `arm64` CPU arch devices are accidentally recognized as `x64` CPU arch.

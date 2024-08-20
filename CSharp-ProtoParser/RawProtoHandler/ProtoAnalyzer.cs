@@ -33,6 +33,9 @@ public static class ProtoJsonRawDataAnalyzer
                 {
                     OptionName = option.OptionName,
                     Constant = option.Constant,
+                    Meta = option.Meta,
+                    Comments = option.Comments,
+                    InlineComment = option.InlineComment,
                 });
 
         if (protoBodies.Messages != null)
@@ -58,8 +61,13 @@ public static class ProtoJsonRawDataAnalyzer
     {
         var enumResult = new EnumResult
         {
-            EnumName = eb.EnumName
+            EnumName = eb.EnumName,
+            Meta = eb.Meta,
+            Comments = eb.Comments,
+            InlineComment = eb.InlineComment,
+            InlineCommentBehindLeftCurly = eb.InlineCommentBehindLeftCurly,
         };
+        // TODO: Enum fields comment
         if (eb.EnumBody.EnumFields != null)
             foreach (var ei in eb.EnumBody.EnumFields)
             {
@@ -81,7 +89,10 @@ public static class ProtoJsonRawDataAnalyzer
             FieldType = mb.Type,
             FieldName = mb.FieldName,
             FieldNumber = int.Parse(mb.FieldNumber),
-            IsRepeatedField = mb.IsRepeated
+            IsRepeatedField = mb.IsRepeated,
+            Meta = mb.Meta,
+            Comments = mb.Comments,
+            InlineComment = mb.InlineComment,
         };
 
         commonResult.IsImportType = !nativeTypes.Contains(commonResult.FieldType);
@@ -94,7 +105,11 @@ public static class ProtoJsonRawDataAnalyzer
         var oneofResult = new OneofResult
         {
             OneofEntryName = mb.OneofName,
-            OneofInnerFields = new List<CommonResult>()
+            OneofInnerFields = new List<CommonResult>(),
+            Meta = mb.Meta,
+            Comments = mb.Comments,
+            InlineComment = mb.InlineComment,
+            InlineCommentBehindLeftCurly = mb.InlineCommentBehindLeftCurly,
         };
 
         if (mb.OneofFields != null)
@@ -113,7 +128,10 @@ public static class ProtoJsonRawDataAnalyzer
         {
             FieldType = mb.Type,
             FieldName = mb.FieldName,
-            FieldNumber = int.Parse(mb.FieldNumber)
+            FieldNumber = int.Parse(mb.FieldNumber),
+            Meta = mb.Meta,
+            Comments = mb.Comments,
+            InlineComment = mb.InlineComment,
         };
 
         commonResult.IsImportType = !nativeTypes.Contains(commonResult.FieldType);
@@ -129,7 +147,10 @@ public static class ProtoJsonRawDataAnalyzer
             KeyType = mb.KeyType,
             ValueType = mb.Type,
             FieldName = mb.MapName,
-            FieldNumber = int.Parse(mb.FieldNumber)
+            FieldNumber = int.Parse(mb.FieldNumber),
+            Meta = mb.Meta,
+            Comments = mb.Comments,
+            InlineComment = mb.InlineComment,
         };
 
         mapResult.KeyIsImportType = !nativeTypes.Contains(mapResult.KeyType);
@@ -147,7 +168,11 @@ public static class ProtoJsonRawDataAnalyzer
             CommonFields = new List<CommonResult>(),
             MapFields = new List<MapResult>(),
             OneofFields = new List<OneofResult>(),
-            EnumFields = new List<EnumResult>()
+            EnumFields = new List<EnumResult>(),
+            Meta = body.Meta,
+            Comments = body.Comments,
+            InlineComment = body.InlineComment,
+            InlineCommentBehindLeftCurly = body.InlineCommentBehindLeftCurly,
         };
 
         if (body.MessageBody.Enums != null)

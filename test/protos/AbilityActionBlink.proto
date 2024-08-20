@@ -18,9 +18,11 @@ syntax = "proto3";
 
 package miHomo.Protos;
 
-message AbilityActionBlink
-{
-    Vector pos = 10;
+// Comment
+message AbilityActionBlink // INline comment
+{ // Inline comment behind left curly
+    // field comment
+    Vector pos = 10; // field inline comment
     Vector rot = 11;
 }
 

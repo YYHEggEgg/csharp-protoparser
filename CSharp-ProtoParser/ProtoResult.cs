@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
+using YYHEggEgg.ProtoParser.RawData;
 
 namespace YYHEggEgg.ProtoParser;
 
-public class CommonResult
+public class CommonResult : WithCommentsBase
 {
 #if NET7_0_OR_GREATER
     public required string FieldType { get; set; }
@@ -75,7 +76,7 @@ public class CommonResult
     #endregion
 }
 
-public class MapResult
+public class MapResult : WithCommentsBase
 {
 #if NET7_0_OR_GREATER
     public required string KeyType { get; set; }
@@ -152,7 +153,7 @@ public class MapResult
     #endregion
 }
 
-public class OneofResult
+public class OneofResult : WithInlineCommentWithLeftCurlyBase
 {
 #if NET7_0_OR_GREATER
     public required string OneofEntryName { get; set; }
@@ -236,7 +237,7 @@ public class OneofResult
     #endregion
 }
 
-public class EnumResult
+public class EnumResult : WithInlineCommentWithLeftCurlyBase
 {
 #if NET7_0_OR_GREATER
     public required string EnumName { get; set; }
@@ -341,7 +342,7 @@ public class EnumResult
     #endregion
 }
 
-public class MessageResult
+public class MessageResult : WithInlineCommentWithLeftCurlyBase
 {
 #if NET7_0_OR_GREATER
     public required string MessageName { get; set; }
@@ -435,7 +436,7 @@ public class MessageResult
     #endregion
 }
 
-public class OptionResult
+public class OptionResult : WithCommentsBase
 {
 #if NET7_0_OR_GREATER
     public required string OptionName { get; set; }
